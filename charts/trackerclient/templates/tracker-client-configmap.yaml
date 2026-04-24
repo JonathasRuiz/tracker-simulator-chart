@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.global.appName }}-tracker-client-config
+data:
+  JAEGER_HOST: {{ .Values.global.jaeger.host }}
+  JAEGER_PORT: {{ .Values.global.jaeger.port | quote }}
+  TRACKER_HOST: {{ .Values.trackerClient.trackerServerHost }}
+  TRACKER_PORT: {{ .Values.trackerClient.trackerServerPort | quote }}
+  GRPC_TRACKER_PORT: {{ .Values.trackerClient.grpcServerPort | quote }}
+  MQTT_HOST: {{ .Values.global.mqtt.host }}
+  MQTT_PORT: {{ .Values.global.mqtt.port | quote }}

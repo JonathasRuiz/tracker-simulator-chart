@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.global.appName }}-tracker-server-config
+data:
+  JAEGER_HOST: '{{ .Values.global.jaeger.host }}'
+  JAEGER_PORT: '{{ .Values.global.jaeger.port }}'
+  REDIS_HOST: '{{ .Values.global.redis.host }}'
+  REDIS_PORT: '{{ .Values.global.redis.port }}'
+  MQTT_HOST: '{{ .Values.global.mqtt.host }}'
+  MQTT_PORT: '{{ .Values.global.mqtt.port }}'
+  MAX_CONNECTIONS_PER_HOST: '{{ .Values.trackerServer.maxConnectionsPerHost }}'
+  TRACKERCLIENT_HOST: '{{ .Values.trackerServer.trackerClientHost }}'
+  TRACKERCLIENT_PORT: '{{ .Values.trackerServer.trackerClientPort }}'
+  GRPC_SERVER_PORT: '{{ .Values.trackerServer.grpcServerPort }}'

@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    version: 1.34.0
+  labels:
+    app: tracker
+    traffic: active
+  name: tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tracker
+  template:
+    metadata:
+      annotations:
+        version: 1.34.0
+      labels:
+        app: tracker
+        traffic: active
+    spec:
+      {{- with .Values.trackerServer.nodeSelector }}
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                    {{- range . }}
+                      - {{ . | quote }}
+                    {{- end }}
+      {{- end }}
+      containers:
+        - image: "{{ .Values.trackerServer.image.repository }}:{{ .Values.trackerServer.image.tag }}-{{ .Values.trackerServer.image.arch }}"
+          name: trackerserver
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.global.appName }}-tracker-server-config
+            - secretRef:
+                name: {{ .Values.global.appName }}-secrets
+          resources:
+            {{- toYaml .Values.trackerServer.resources | nindent 12 }}
+          ports:
+            - containerPort: {{ .Values.trackerServer.port }}
+              protocol: TCP
+            - containerPort: {{ .Values.trackerServer.grpcServerPort }}
+              protocol: TCP
+      restartPolicy: Always
