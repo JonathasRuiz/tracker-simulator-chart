@@ -29,15 +29,9 @@ dependencies:
   - name: trackerclient
     version: "0.1.0"
     repository: "file://charts/trackerclient"
-  - name: trackerclientgo
-    version: "0.1.0"
-    repository: "file://charts/trackerclientgo"
   - name: trackerserver
     version: "0.1.0"
     repository: "file://charts/trackerserver"
-  - name: trackerservergo
-    version: "0.1.0"
-    repository: "file://charts/trackerservergo"
   - name: communicationsapp
     version: "0.1.0"
     repository: "file://charts/communicationsapp"

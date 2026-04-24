@@ -3,7 +3,7 @@ global:
   appName: "tracker-simulator"
   networkHost: &networkHost "10.0.0.16"
   secrets:
-    googleMapsApiKey: "<YOUR_GOOGLE_MAPS_API_KEY>"
+    googleMapsApiKey: "AIzaSyCiPL7-RukqhQttcMxmKaOCg1-V9xfOh94"
 
   jaeger:
     host: *networkHost
@@ -61,49 +61,6 @@ trackerclient:
     image:
       repository: docker.io/jhonnyvennom/tracker-client
       tag: "2.2.0"
-      arch: amd64
-    replicas: 1
-    resources:
-      requests: { memory: "1024Mi", cpu: "750m" }
-      limits:   { memory: "1024Mi", cpu: "750m" }
-    nodeSelector:
-      - "jon2minipc"
-      - "jon-legion-go-8apu1"
-
-trackerservergo:
-  trackerServerGo:
-    host: *networkHost
-    port: 18098
-    tlsPort: 8098
-    quicPort: 8444
-    trackerClientHost: *envoyHost
-    trackerClientPort: *trackerClientGoPort
-    image:
-      repository: docker.io/jhonnyvennom/tracker-server-go
-      tag: "2.1.0"
-      arch: amd64
-    replicas: 1
-    resources:
-      requests: { memory: "1024Mi", cpu: "750m" }
-      limits:   { memory: "1024Mi", cpu: "750m" }
-    nodeSelector:
-      - "jon2minipc"
-      - "jon-legion-go-8apu1"
-
-trackerclientgo:
-  trackerClientGo:
-    host: *networkHost
-    port: 8099
-    trackerServerGoHost: *envoyHost
-    trackerServerGoPort: *trackerServerGoPort
-    trackerServerGoTlsPort: *trackerServerTlsGoPort
-    trackerServerGoGrpcTlsPort: *trackerServerTlsGoPort
-    metricsPath: "/api/v1/metrics"
-    isTls: false
-    quicPort: *trackerServerQuicGoPort
-    image:
-      repository: docker.io/jhonnyvennom/tracker-client-go
-      tag: "2.2.1"
       arch: amd64
     replicas: 1
     resources:
