@@ -74,7 +74,7 @@ communicationsapp:
   communicationsApp:
     host: *networkHost
     port: 80
-    targetPort: 8080
+    servicePort: 8080
     serverPort: *trackerServerPort
     trackerApp:
       port: *trackerServerPort

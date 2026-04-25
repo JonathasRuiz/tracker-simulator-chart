@@ -10,8 +10,8 @@ metadata:
 spec:
   ports:
     - name: communications-app-3001
-      port: {{ .Values.communicationsApp.port }}
-      targetPort: {{ .Values.communicationsApp.targetPort }}
+      port: {{ .Values.communicationsApp.servicePort }}
+      targetPort: {{ .Values.communicationsApp.port }}
       protocol: TCP
   selector:
     app: communications-app
