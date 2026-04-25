@@ -11,7 +11,7 @@ spec:
   ports:
     - name: communications-app-3001
       port: {{ .Values.communicationsApp.port }}
-      targetPort: {{ .Values.communicationsApp.port }}
+      targetPort: {{ .Values.communicationsApp.targetPort }}
       protocol: TCP
   selector:
     app: communications-app
