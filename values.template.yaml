@@ -65,7 +65,15 @@ communicationsapp:
   communicationsApp:
     host: *envoyHost
     port: 80
+    serverPort: *communicationsAppPort
     servicePort: 8080
+    trackerApp:
+      port: *trackerServerPort
+    trackerClientApp:
+      port: *trackerClientPort
+    trackerAnalyticsApp:
+      port: *trackerAnalyticsPort
+    mqttWsUrl: "ws://{{ .Values.global.mqtt.host }}:{{ .Values.global.mqtt.port }}/mqtt"
     image:
       repository: docker.io/jhonnyvennom/communications_app
       tag: "1.6.1"
