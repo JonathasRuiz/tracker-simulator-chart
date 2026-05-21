@@ -43,9 +43,9 @@ spin_up_pipeline:
     - echo "Now deploy app with helm"
     - echo "ls -al "
     - echo "Install current chart"
-    - helm upgrade --install tracker-simulator ./tracker-simulator-0.1.0.tgz --values ./values.yaml
+    - helm upgrade --install tracker-simulator ./tracker-simulator-0.1.0.tgz --values /home/jonathas/.config/tracker-simulator/values.yaml
     - echo "Install envoy helm chart"
-    - helm upgrade --install tracker-simulator-envoy https://github.com/JonathasRuiz/tracker-simulator-envoy-chart/raw/refs/heads/master/tracker-simulator-envoy-0.1.0.tgz --values ./values.yaml
+    - helm upgrade --install tracker-simulator-envoy https://github.com/JonathasRuiz/tracker-simulator-envoy-chart/raw/refs/heads/master/tracker-simulator-envoy-0.1.0.tgz --values /home/jonathas/.config/tracker-simulator/envoy.values.yaml
   environment: staging
 
 
