@@ -5,8 +5,8 @@ metadata:
 data:
   JAEGER_HOST: {{ .Values.global.jaeger.host }}
   JAEGER_PORT: {{ .Values.global.jaeger.port | quote }}
-  REDIS_HOST: '{{ .Values.global.redis.host }}'
-  REDIS_PORT: '{{ .Values.global.redis.port }}'  
+  REDIS_HOST: {{ .Values.global.redis.host }}
+  REDIS_PORT: {{ .Values.global.redis.port | quote }}  
   TRACKER_HOST: {{ .Values.trackerClient.trackerServerHost }}
   TRACKER_PORT: {{ .Values.trackerClient.trackerServerPort | quote }}
   GRPC_TRACKER_PORT: {{ .Values.trackerClient.grpcServerPort | quote }}
