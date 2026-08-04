@@ -37,6 +37,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Values.global.appName }}-tracker-client-config
+            - secretRef:
+                name: {{ .Values.global.appName }}-secrets
           resources:
             {{- toYaml .Values.trackerClient.resources | nindent 12 }}
           ports:
